@@ -53,6 +53,7 @@ class ComposerStaticInit1d99e1a1f587191a7e80058e435cb6ce
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
+            'Sven\\ArtisanView\\' => 17,
         ),
         'R' => 
         array (
@@ -193,6 +194,10 @@ class ComposerStaticInit1d99e1a1f587191a7e80058e435cb6ce
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'Sven\\ArtisanView\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sven/artisan-view/src',
+        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -319,6 +324,7 @@ class ComposerStaticInit1d99e1a1f587191a7e80058e435cb6ce
     );
 
     public static $classMap = array (
+        'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -3017,6 +3023,27 @@ class ComposerStaticInit1d99e1a1f587191a7e80058e435cb6ce
         'SebastianBergmann\\Timer\\RuntimeException' => __DIR__ . '/..' . '/phpunit/php-timer/src/RuntimeException.php',
         'SebastianBergmann\\Timer\\Timer' => __DIR__ . '/..' . '/phpunit/php-timer/src/Timer.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Sven\\ArtisanView\\BlockBuilder' => __DIR__ . '/..' . '/sven/artisan-view/src/BlockBuilder.php',
+        'Sven\\ArtisanView\\BlockStack' => __DIR__ . '/..' . '/sven/artisan-view/src/BlockStack.php',
+        'Sven\\ArtisanView\\Blocks\\Block' => __DIR__ . '/..' . '/sven/artisan-view/src/Blocks/Block.php',
+        'Sven\\ArtisanView\\Blocks\\Extend' => __DIR__ . '/..' . '/sven/artisan-view/src/Blocks/Extend.php',
+        'Sven\\ArtisanView\\Blocks\\InlineSection' => __DIR__ . '/..' . '/sven/artisan-view/src/Blocks/InlineSection.php',
+        'Sven\\ArtisanView\\Blocks\\Push' => __DIR__ . '/..' . '/sven/artisan-view/src/Blocks/Push.php',
+        'Sven\\ArtisanView\\Blocks\\Section' => __DIR__ . '/..' . '/sven/artisan-view/src/Blocks/Section.php',
+        'Sven\\ArtisanView\\Commands\\MakeView' => __DIR__ . '/..' . '/sven/artisan-view/src/Commands/MakeView.php',
+        'Sven\\ArtisanView\\Commands\\ScrapView' => __DIR__ . '/..' . '/sven/artisan-view/src/Commands/ScrapView.php',
+        'Sven\\ArtisanView\\Config' => __DIR__ . '/..' . '/sven/artisan-view/src/Config.php',
+        'Sven\\ArtisanView\\Destroyer' => __DIR__ . '/..' . '/sven/artisan-view/src/Destroyer.php',
+        'Sven\\ArtisanView\\Exceptions\\UnsupportedException' => __DIR__ . '/..' . '/sven/artisan-view/src/Exceptions/UnsupportedException.php',
+        'Sven\\ArtisanView\\Generator' => __DIR__ . '/..' . '/sven/artisan-view/src/Generator.php',
+        'Sven\\ArtisanView\\PathHelper' => __DIR__ . '/..' . '/sven/artisan-view/src/PathHelper.php',
+        'Sven\\ArtisanView\\ServiceProvider' => __DIR__ . '/..' . '/sven/artisan-view/src/ServiceProvider.php',
+        'Sven\\ArtisanView\\ViewActor' => __DIR__ . '/..' . '/sven/artisan-view/src/ViewActor.php',
+        'Sven\\ArtisanView\\Voters\\ExtendsParent' => __DIR__ . '/..' . '/sven/artisan-view/src/Voters/ExtendsParent.php',
+        'Sven\\ArtisanView\\Voters\\SectionsInParent' => __DIR__ . '/..' . '/sven/artisan-view/src/Voters/SectionsInParent.php',
+        'Sven\\ArtisanView\\Voters\\StacksFromParent' => __DIR__ . '/..' . '/sven/artisan-view/src/Voters/StacksFromParent.php',
+        'Sven\\ArtisanView\\Voters\\Voter' => __DIR__ . '/..' . '/sven/artisan-view/src/Voters/Voter.php',
+        'Sven\\ArtisanView\\Voters\\YieldsFromParent' => __DIR__ . '/..' . '/sven/artisan-view/src/Voters/YieldsFromParent.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => __DIR__ . '/..' . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
         'Symfony\\Component\\Console\\CommandLoader\\ContainerCommandLoader' => __DIR__ . '/..' . '/symfony/console/CommandLoader/ContainerCommandLoader.php',
