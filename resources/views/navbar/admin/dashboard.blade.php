@@ -14,8 +14,8 @@
                         <a class="dropdown-item" href="{{route('admin.category.index')}}">All Categories</a>
                         <a class="dropdown-item" href="{{route('admin.category.manage')}}">Category Management</a>
                     <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="">All SubCategory</a>
-                        <a class="dropdown-item" href="">SubCategory Management</a>
+                        <a class="dropdown-item" href="{{route('admin.subcategory.index')}}">All SubCategory</a>
+                        <a class="dropdown-item" href="{{route('admin.subcategory.manage')}}">SubCategory Management</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>

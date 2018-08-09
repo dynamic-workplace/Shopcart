@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container">
-        <div class="text-lg-center title">
+        <div class="text-lg-center">
             <h3>All Categories</h3>
         </div>
     </div>
