@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\Product\Mobile;
 
-use App\Category;
+use App\Models\Admin\Products\Mobile\MobileBrands;
+use App\Models\Admin\Products\Mobile\MobileDetails;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CategoryController extends Controller
+class MobileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-
+        //
     }
 
     /**
@@ -36,19 +37,21 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $name = $request->input('name');
-        $category = Category::search('name', $name);
-        if($category)
+        $brand = MobileBrands::where('name',$request->input('name'))->first();
+
+        //$test = json_decode($request->all(),true);
+
+        if($brand == '')
         {
-            return response()->json(['warning'=>$name.' category already exists']);
+            $brand = MobileBrands::create($request->only('name'));
         }
-        else
-        {
-            $category = new Category();
-            $category->name = strtolower($name);
-            $category->save();
-            return response()->json(['success'=>ucfirst($category->name)]);
-        }
+
+        $details = MobileDetails::create(array_merge($request->except('name'),['mobile_brand_id'=>$brand->id, 'product_id'=>strtoupper(uniqid($brand->name.'_'))]));
+
+        return redirect()->route('admin.product.new');
+
+
+
 
     }
 
@@ -60,7 +63,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -83,19 +86,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $name = $request->input('name');
-        $category = Category::search('name', strtolower($name));
-        if ($category) {
-            return response()->json(['warning' => $name . ' category already exists!']);
-        } else {
-            $category = Category::search('id', $id);
-            $result = $category->update([
-                'name' => $name
-            ]);
-            return response()->json(['success' => ucfirst($name) . ' has been updated!']);
-        }
+        //
     }
-    /**{
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -103,8 +97,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::search('id',$id);
-        $category->delete();
-        return response()->json(['success'=>'Deleted!']);
+        //
     }
 }

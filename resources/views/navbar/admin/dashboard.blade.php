@@ -25,7 +25,7 @@
                     Product Management
                 </a>
                 <div class="dropdown-menu"  aria-labelledby="navbarDropdownSubCategory">
-                    <a class="dropdown-item" href="">Create Product</a>
+                    <a class="dropdown-item" href="{{route('admin.product.new')}}">Create Product</a>
                     <a class="dropdown-item" href="">Update Product</a>
                     <a class="dropdown-item" href="">Delete Product</a>
                     <div class="dropdown-divider"></div>

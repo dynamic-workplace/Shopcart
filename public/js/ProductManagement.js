@@ -1,6 +1,10 @@
 $(document).ready(function(){
 
 
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -28,23 +32,22 @@ $(document).ready(function(){
 
     $('#subcategorySelect').change(function () {
 
-        var value = $('#subcategorySelect').find('option:selected').text();
+        var text = $('#subcategorySelect').find('option:selected').text();
+        var value = text.replace(" ", "");
 
-        if(value === 'Mobile')
-        {
             $.ajax({
 
                 type : 'GET',
-                url : '/admin/getMobileBrands',
+                url : '/admin/product/'+value.toLowerCase(),
                 success:function (data) {
 
-                    $('.distinct').html('<select class="form-control" name="brand" id="brand"><option value="">Select a mobile brand</option>'+data['success']+'</select>');
+                    $('.distinct').html(data['form']);
 
                 }
 
 
             });
-        }
+
 
 
     });

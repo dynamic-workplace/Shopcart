@@ -1,16 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Models\Admin\Main;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Subcategory extends Model
+class Category extends Model
 {
     protected $fillable = ['name'];
 
-    public function category()
+    public function subcategories()
     {
-        return $this->belongsTo('App\Category');
+        return $this->hasMany('App\Models\Admin\Main\Subcategory');
     }
 
     public static function everything()
@@ -21,10 +21,5 @@ class Subcategory extends Model
     public static function search($field, $value)
     {
         return static::where($field, $value)->first();
-    }
-
-    public static function searchResults($field, $value)
-    {
-        return static::where($field, $value)->get();
     }
 }

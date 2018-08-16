@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin\Main;
 
-use App\Category;
-use App\Subcategory;
+use App\Models\Admin\Main\Category;
+use App\Models\Admin\Main\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
