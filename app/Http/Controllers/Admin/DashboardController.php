@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin\Main\Category;
 use App\Models\Admin\Main\Subcategory;
+use App\Models\Admin\Products\Mobile\MobileBrand;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Schema;
@@ -61,6 +62,17 @@ class DashboardController extends Controller
 
     public function makeWork()
     {
+
+        $result = array();
+        $categories = Category::where('name','like','%'.$_GET['term'].'%')->get();
+
+        foreach($categories as $category)
+        {
+            array_push($result, $category->name);
+        }
+
+        return json_encode($result);
+
         //return strtoupper(uniqid('apple_'));
 //        if(fnmatch('*id','product_id'))
 //        {
@@ -69,7 +81,20 @@ class DashboardController extends Controller
 //
 //        return 'No Match';
 
-        return Schema::getColumnListing('mobile_details');
+        //return Schema::getColumnListing('mobile_details');
+    }
+
+    public function doWork()
+    {
+        $result = array();
+        $categories = MobileBrand::where('name','like','%'.$_GET['term'].'%')->get();
+
+        foreach($categories as $category)
+        {
+            array_push($result, $category->name);
+        }
+
+        return json_encode($result);
     }
 
 

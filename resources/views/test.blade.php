@@ -13,12 +13,10 @@
             <h4>A Simple Management for Shopcart</h4>
         </div>
         <div class="form-group">
-        <input class="form-control" type="text" id="test"/>
+        <input class="form-control" type="text" id="test" name="test"/>
         </div>
-        <div>
-            <ul style="list-style: none" id="resultList">
-
-            </ul>
+        <div class="form-group">
+            <input class="form-control" type="text" id="another" name="test2"/>
         </div>
     </div>
 
@@ -38,37 +36,58 @@
                 }
             });
 
-            $("#test").keyup(function () {
-                var value = $(this).val();
-                if(value !== '')
-                {
-                    $.ajax({
 
-                        type : 'POST',
-                        url : '/test',
-                        data : {queue :value},
-                        success:function(data){
+            // $('#test').autocomplete({
+            //
+            //     source: '/check'
+            //
+            // });
 
-                            $('#resultList').fadeIn();
-                            $("#resultList").html(data['result']);
-
-                        }
-
+            $(document).on("focus",'#test',function(e) {
+                if ( !$(this).data("autocomplete") ) { // If the autocomplete wasn't called yet:
+                    $(this).autocomplete({             //   call it
+                        source: '/check'     //     passing some parameters
                     });
                 }
-                else
-                {
-                    $('#resultList').fadeOut();
-                }
+            });
+
+            $('#another').autocomplete({
+
+                source: '/break'
 
             });
 
-            $(document).on('click','#resultList > li', function(){
-
-                $("#test").val($(this).text());
-                $('#resultList').fadeOut();
-
-            });
+            // $("#test").keyup(function () {
+            //     var value = $(this).val();
+            //     if(value !== '')
+            //     {
+            //         $.ajax({
+            //
+            //             type : 'POST',
+            //             url : '/test',
+            //             data : {queue :value},
+            //             success:function(data){
+            //
+            //                 $('#resultList').fadeIn();
+            //                 $("#resultList").html(data['result']);
+            //
+            //             }
+            //
+            //         });
+            //     }
+            //     else
+            //     {
+            //         $('#resultList').fadeOut();
+            //     }
+            //
+            // });
+            //
+            // $(document).on('click','#resultList > li', function(){
+            //
+            //     $("#test").val($(this).text());
+            //     $('#resultList').fadeOut();
+            //
+            // });
         });
     </script>
 @endsection

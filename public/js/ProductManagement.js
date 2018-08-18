@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
-
-    function capitalizeFirstLetter(string) {
+    var value;
+    function jsUcFirst(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
@@ -33,24 +33,25 @@ $(document).ready(function(){
     $('#subcategorySelect').change(function () {
 
         var text = $('#subcategorySelect').find('option:selected').text();
-        var value = text.replace(" ", "");
+        value = text.replace(/\ /g, '').toLowerCase();
+
+
+        //$('.distinct').html(value);
+
+        $('#uploadForm').attr("action", value);
+
 
             $.ajax({
 
                 type : 'GET',
-                url : '/admin/product/'+value.toLowerCase(),
+                url : '/admin/product/process/'+value,
                 success:function (data) {
-
                     $('.distinct').html(data['form']);
-
                 }
-
-
             });
 
-
-
     });
+
 
     $('.distinct').on('change','#brand',function (){
         if ($(this).val()!=='')
@@ -64,10 +65,22 @@ $(document).ready(function(){
     });
 
 
+    $(document).on("focus",'#name',function(e) {
+        if ( !$(this).data("autocomplete") ) {
+            $(this).autocomplete({
+                source: value+'/create'
+            });
+        }
+    });
 
 
-
-
+    $(document).on("focus",'#type',function(e) {
+        if ( !$(this).data("autocomplete") ) {
+            $(this).autocomplete({
+                source: value+'/create'
+            });
+        }
+    });
 
 
 

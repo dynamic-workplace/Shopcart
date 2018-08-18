@@ -31,7 +31,7 @@
             </table>
         </div>
     </div>
-    {!! Form::open(['method'=>'POST', 'action'=>'Admin\Product\Mobile\MobileController@store']) !!}
+    {!! Form::open(['method'=>'POST', 'action'=>'Admin\Product\Mobile\MobileController@store', 'id'=>'uploadForm']) !!}
     <div class="container"><br>
         <div class="col-sm-6 distinct">
 

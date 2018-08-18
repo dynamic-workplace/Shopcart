@@ -20,10 +20,15 @@ Route::get('/test', function (){
 
 Route::post('/test', 'Admin\DashboardController@test');
 Route::get('/check','Admin\DashboardController@makeWork');
+Route::get('/break','Admin\DashboardController@doWork');
 
 
 
 Route::resource('/admin/category', 'Admin\Main\CategoryController');
 Route::resource('/admin/subcategory', 'Admin\Main\SubcategoryController');
-Route::resource('/admin/product', 'Admin\Product\ProductController');
+
+Route::resource('/admin/product/process', 'Admin\Product\ProductController');
+
 Route::resource('/admin/product/mobile','Admin\Product\Mobile\MobileController');
+Route::resource('/admin/product/smartwearabletech', 'Admin\Product\SmartWearableTech\SmartwearabletechController');
+Route::resource('/admin/product/mobileaccessories', 'Admin\Product\MobileAccessories\MobileaccessoriesController');

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Product;
+namespace App\Http\Controllers\Admin\Product\SmartWearableTech;
 
+use App\Models\Admin\Products\Smartwearabletech\SmartwearabletechBrand;
+use App\Models\Admin\Products\Smartwearabletech\SmartwearabletechDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Schema;
 
-class ProductController extends Controller
+class SmartwearabletechController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +26,15 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $result = array();
+        $categories = SmartwearabletechBrand::where('name','like','%'.$_GET['term'].'%')->get();
+
+        foreach($categories as $category)
+        {
+            array_push($result, $category->name);
+        }
+
+        return json_encode($result);
     }
 
     /**
@@ -36,7 +45,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $brand = SmartwearabletechBrand::where('name',$request->input('name'))->first();
+
+        //$test = json_decode($request->all(),true);
+
+        if($brand == '')
+        {
+            $brand = SmartwearabletechBrand::create($request->only('name'));
+        }
+
+        $details = SmartwearabletechDetail::create(array_merge($request->except('name'),['smartwearabletech_brand_id'=>$brand->id, 'product_id'=>strtoupper(uniqid($brand->name.'_'))]));
+
+        return redirect()->route('admin.product.new');
     }
 
     /**
@@ -47,40 +67,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $form = '';
-        if (Schema::hasTable($id.'_brands'))
-        {
-            $column1 = Schema::getColumnListing($id.'_brands');
-        }
-        else
-        {
-            $column1 = Schema::getColumnListing($id.'_types');
-        }
-        $column2 = Schema::getColumnListing($id.'_details');
-
-        $columns = array_merge($column1, $column2);
-
-        foreach ($columns as $column)
-        {
-            if(!fnmatch('*id', $column)) {
-                if (!fnmatch('*_at', $column)) {
-                    $form .= '<div class="form-group">
-                                <label>' . str_replace('_', ' ', $column) . '</label>
-                                <input type="text" id="' . $column . '" name="' . $column . '" class="form-control" placeholder="' . str_replace('_', ' ', $column) . '"/>
-                              </div>';
-                }
-            }
-        }
-
-        if($form !== '')
-        {
-            $form .= '<div class="form-group">
-                          <input type="submit" class="btn btn-primary" value="Upload"/>
-                      </div>';
-        }
-
-        return response()->json(['form'=>$form]);
-
+        //
     }
 
     /**

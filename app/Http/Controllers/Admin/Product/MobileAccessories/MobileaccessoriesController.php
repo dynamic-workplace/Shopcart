@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Product;
+namespace App\Http\Controllers\Admin\Product\MobileAccessories;
 
+use App\Models\Admin\Products\Mobileaccessories\MobileaccessoriesDetail;
+use App\Models\Admin\Products\Mobileaccessories\MobileaccessoriesType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Schema;
 
-class ProductController extends Controller
+class MobileaccessoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,7 +26,15 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $result = array();
+        $categories = MobileaccessoriesType::where('type','like','%'.$_GET['term'].'%')->get();
+
+        foreach($categories as $category)
+        {
+            array_push($result, $category->type);
+        }
+
+        return json_encode($result);
     }
 
     /**
@@ -36,7 +45,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $type = MobileaccessoriesType::where('type',$request->input('type'))->first();
+
+        //$test = json_decode($request->all(),true);
+
+        if($type == '')
+        {
+            $type = MobileaccessoriesType::create($request->only('type'));
+        }
+
+        $details = MobileaccessoriesDetail::create(array_merge($request->except('type'),['mobileaccessories_type_id'=>$type->id, 'product_id'=>strtoupper(uniqid(str_replace(' ', '', $request->input('brand_name').'_')))]));
+
+        return redirect()->route('admin.product.new');
     }
 
     /**
@@ -47,40 +67,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $form = '';
-        if (Schema::hasTable($id.'_brands'))
-        {
-            $column1 = Schema::getColumnListing($id.'_brands');
-        }
-        else
-        {
-            $column1 = Schema::getColumnListing($id.'_types');
-        }
-        $column2 = Schema::getColumnListing($id.'_details');
-
-        $columns = array_merge($column1, $column2);
-
-        foreach ($columns as $column)
-        {
-            if(!fnmatch('*id', $column)) {
-                if (!fnmatch('*_at', $column)) {
-                    $form .= '<div class="form-group">
-                                <label>' . str_replace('_', ' ', $column) . '</label>
-                                <input type="text" id="' . $column . '" name="' . $column . '" class="form-control" placeholder="' . str_replace('_', ' ', $column) . '"/>
-                              </div>';
-                }
-            }
-        }
-
-        if($form !== '')
-        {
-            $form .= '<div class="form-group">
-                          <input type="submit" class="btn btn-primary" value="Upload"/>
-                      </div>';
-        }
-
-        return response()->json(['form'=>$form]);
-
+        //
     }
 
     /**
